@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS Apply_Discount_Order;
 DROP TABLE IF EXISTS Apply_Discount_Pizza;
 
 -- Drop the junction table for Contains (depends on Pizza and Toppings)
-DROP TABLE IF EXISTS [Contains];
+DROP TABLE IF EXISTS OnPizza;
 
 -- Drop the SeatNumber table (depends on DineIn)
 DROP TABLE IF EXISTS SeatNumber;

@@ -30,7 +30,7 @@ CREATE TABLE Toppings (
 
 
 -- Table: Contains (junction table for Pizza and Toppings)
-CREATE TABLE [Contains] (
+CREATE TABLE OnPizza (
     PizzaID INT NOT NULL,
     ToppingID INT NOT NULL,
     PRIMARY KEY (PizzaID, ToppingID),
