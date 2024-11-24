@@ -3,8 +3,8 @@ CREATE TABLE BasePizza (
     BasePizzaID INT PRIMARY KEY,
     Size VARCHAR(50) NOT NULL,
     CrustType VARCHAR(50) NOT NULL,
-    BasePrice DECIMAL(10, 2) NOT NULL
-    BaseCompanyCost DECIMAL(10, 2) NOT NULL,
+    BasePrice DECIMAL(10, 2) NOT NULL,
+    BaseCompanyCost DECIMAL(10, 2) NOT NULL
 );
 
 -- Table: Pizza
@@ -30,7 +30,7 @@ CREATE TABLE Toppings (
 
 
 -- Table: Contains (junction table for Pizza and Toppings)
-CREATE TABLE Contains (
+CREATE TABLE [Contains] (
     PizzaID INT NOT NULL,
     ToppingID INT NOT NULL,
     PRIMARY KEY (PizzaID, ToppingID),
@@ -41,9 +41,9 @@ CREATE TABLE Contains (
 -- Table: Discounts
 CREATE TABLE Discounts (
     DiscountID INT PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL
+    Name VARCHAR(100) NOT NULL,
     PercentDiscount INT,
-    DollarDiscount DECIMAL(3, 2),
+    DollarDiscount DECIMAL(3, 2)
 );
 
 -- Table: Apply (junction table for Discounts and Pizza)
@@ -83,7 +83,7 @@ CREATE TABLE DineIn (
 -- Table: Delivery
 CREATE TABLE Delivery (
     OrderID INT PRIMARY KEY,
-    PlacedBy INT FOREIGN KEY,
+    PlacedBy INT,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (PlacedBy) REFERENCES Customer(CustomerID)
 );
@@ -91,7 +91,7 @@ CREATE TABLE Delivery (
 -- Table: Pickup
 CREATE TABLE Pickup (
     OrderID INT PRIMARY KEY,
-    PlacedBy INT FOREIGN KEY,
+    PlacedBy INT,
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
     FOREIGN KEY (PlacedBy) REFERENCES Customer(CustomerID)
 );
