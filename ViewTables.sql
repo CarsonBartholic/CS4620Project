@@ -8,7 +8,7 @@ SELECT * FROM Pizza;
 SELECT * FROM Toppings;
 
 -- View all records from the Contains table
-SELECT * FROM [Contains];
+SELECT * FROM Contains;
 
 -- View all records from the Discounts table
 SELECT * FROM Discounts;

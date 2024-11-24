@@ -52,7 +52,7 @@ INSERT INTO Toppings
 VALUES (17, 'Bacon',                1.5, 0.25, 89, 1, 1.5, 2, 3);
 
 
---Insert data into the Discounts table
+-- Insert data into the Discounts table
 INSERT INTO Discounts 
 VALUES (1, 'employee',             15, NULL);
 
@@ -69,7 +69,7 @@ INSERT INTO Discounts
 VALUES (5, 'Gameday special',      20, NULL);
 
 
---Insert data into the BasePizza table
+-- Insert data into the BasePizza table
 INSERT INTO BasePizza
 VALUES (1, 'small', 'Thin', 3, 0.5);
 
@@ -118,13 +118,3 @@ VALUES (15, 'X-Large', 'Pan', 11.5, 4.5);
 INSERT INTO BasePizza
 VALUES (16, 'X-Large', 'Gluten-Free', 12.5, 6);
 
-
-
---Populates tables related to orders
---Order 1
---Order 2
---Order 3
---Order 4
---Order 5
---Order 6
---Order 7

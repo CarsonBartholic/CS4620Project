@@ -1,3 +1,6 @@
+-- Disable foreign key checks
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- Drop the junction table for Apply_Discount_Order (depends on Discounts and Orders)
 DROP TABLE IF EXISTS Apply_Discount_Order;
 
@@ -5,7 +8,7 @@ DROP TABLE IF EXISTS Apply_Discount_Order;
 DROP TABLE IF EXISTS Apply_Discount_Pizza;
 
 -- Drop the junction table for Contains (depends on Pizza and Toppings)
-DROP TABLE IF EXISTS [Contains];
+DROP TABLE IF EXISTS Contains;
 
 -- Drop the SeatNumber table (depends on DineIn)
 DROP TABLE IF EXISTS SeatNumber;
@@ -37,3 +40,5 @@ DROP TABLE IF EXISTS BasePizza;
 -- Drop the Customer table
 DROP TABLE IF EXISTS Customer;
 
+-- Re-enable foreign key checks
+SET FOREIGN_KEY_CHECKS = 1;

@@ -1,3 +1,17 @@
+-- Table: Customer
+CREATE TABLE Customer (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    MiddleName VARCHAR(50),
+    LastName VARCHAR(50) NOT NULL,
+    Phone VARCHAR(15) NOT NULL,
+    HouseNumber VARCHAR(10),
+    Street VARCHAR(100),
+    City VARCHAR(50),
+    State VARCHAR(20),
+    ZipCode VARCHAR(10)
+);
+
 -- Table: BasePizza
 CREATE TABLE BasePizza (
     BasePizzaID INT PRIMARY KEY,
@@ -30,7 +44,7 @@ CREATE TABLE Toppings (
 
 
 -- Table: Contains (junction table for Pizza and Toppings)
-CREATE TABLE [Contains] (
+CREATE TABLE Contains (
     PizzaID INT NOT NULL,
     ToppingID INT NOT NULL,
     PRIMARY KEY (PizzaID, ToppingID),
@@ -55,6 +69,15 @@ CREATE TABLE Apply_Discount_Pizza (
     FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID)
 );
 
+-- Table: Orders (must be created before DineIn, Delivery, Pickup, Apply_Discount_Order)
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    TotalPriceToCustomer DECIMAL(10, 2) NOT NULL,
+    TotalCostToCompany DECIMAL(10, 2) NOT NULL,
+    TimeStamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    OrderStatus VARCHAR(50)
+);
+
 -- Table: Apply (junction table for Discounts and Orders)
 CREATE TABLE Apply_Discount_Order (
     DiscountID INT NOT NULL,
@@ -62,15 +85,6 @@ CREATE TABLE Apply_Discount_Order (
     PRIMARY KEY (DiscountID, OrderID),
     FOREIGN KEY (DiscountID) REFERENCES Discounts(DiscountID),
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
-);
-
--- Table: Orders
-CREATE TABLE Orders (
-    OrderID INT PRIMARY KEY,
-    TotalPriceToCustomer DECIMAL(10, 2) NOT NULL,
-    TotalCostToCompany DECIMAL(10, 2) NOT NULL,
-    TimeStamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    OrderStatus VARCHAR(50)
 );
 
 -- Table: DineIn
@@ -104,16 +118,3 @@ CREATE TABLE SeatNumber (
     FOREIGN KEY (OrderID) REFERENCES DineIn(OrderID)
 );
 
--- Table: Customer
-CREATE TABLE Customer (
-    CustomerID INT PRIMARY KEY,
-    FirstName VARCHAR(50) NOT NULL,
-    MiddleName VARCHAR(50),
-    LastName VARCHAR(50) NOT NULL,
-    Phone VARCHAR(15) NOT NULL,
-    HouseNumber VARCHAR(10),
-    Street VARCHAR(100),
-    City VARCHAR(50),
-    State VARCHAR(20),
-    ZipCode VARCHAR(10)
-);
