@@ -1,0 +1,8 @@
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/bin/Debug/CS4620Project.dacpac
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/obj/Debug/CS4620Project.GeneratedMSBuildEditorConfig.editorconfig
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/obj/Debug/Model.xml
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/obj/Debug/refactor.xml
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/obj/Debug/postdeploy.sql
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/obj/Debug/predeploy.sql
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/obj/Debug/CS4620Project.dll
+/Users/cbartholic/Documents/CS4620/CS4620Project/CS4620Project/obj/Debug/CS4620Project.pdb
