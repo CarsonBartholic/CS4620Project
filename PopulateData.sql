@@ -1,3 +1,6 @@
+-- Project Part 3
+-- By: Brian Hartman, Carson Bartholic
+
 -- Populates all tables with the given data
 -- Insert data into the Toppings table
     INSERT INTO Toppings

@@ -1,3 +1,6 @@
+-- Project Part 3
+-- By: Brian Hartman, Carson Bartholic
+
 -- Table: Customer
 CREATE TABLE Customer (
     CustomerID INT PRIMARY KEY,
@@ -45,7 +48,7 @@ CREATE TABLE Toppings (
 );
 
 
--- Table: Contains (junction table for Pizza and Toppings)
+-- Table: OnPizza
 CREATE TABLE OnPizza (
     PizzaID INT NOT NULL,
     ToppingID INT NOT NULL,
@@ -63,7 +66,7 @@ CREATE TABLE Discounts (
     DollarDiscount DECIMAL(3, 2)
 );
 
--- Table: Apply (junction table for Discounts and Pizza)
+-- Table: Apply_Discount_Pizza
 CREATE TABLE Apply_Discount_Pizza (
     DiscountID INT NOT NULL,
     PizzaID INT NOT NULL,
@@ -72,7 +75,7 @@ CREATE TABLE Apply_Discount_Pizza (
     FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID)
 );
 
--- Table: Orders (must be created before DineIn, Delivery, Pickup, Apply_Discount_Order)
+-- Table: Orders
 CREATE TABLE Orders (
     OrderID INT PRIMARY KEY,
     TotalPriceToCustomer DECIMAL(10, 2) NOT NULL,
@@ -81,7 +84,7 @@ CREATE TABLE Orders (
     OrderStatus VARCHAR(50)
 );
 
--- Table: Apply (junction table for Discounts and Orders)
+-- Table: Apply_Discount_Order
 CREATE TABLE Apply_Discount_Order (
     DiscountID INT NOT NULL,
     OrderID INT NOT NULL,
@@ -113,7 +116,7 @@ CREATE TABLE Pickup (
     FOREIGN KEY (PlacedBy) REFERENCES Customer(CustomerID)
 );
 
--- Table: SeatNumber (junction table for DineIn and Seats)
+-- Table: SeatNumber
 CREATE TABLE SeatNumber (
     OrderID INT NOT NULL,
     SeatNumber INT NOT NULL,

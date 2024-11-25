@@ -1,3 +1,6 @@
+-- Project Part 3
+-- By: Brian Hartman, Carson Bartholic
+
 SELECT * FROM BasePizza;
 SELECT * FROM Pizza;
 SELECT * FROM Toppings;

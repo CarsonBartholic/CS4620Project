@@ -1,3 +1,6 @@
+-- Project Part 3
+-- By: Brian Hartman, Carson Bartholic
+
 -- Disable foreign key checks
 SET FOREIGN_KEY_CHECKS = 0;
 
