@@ -24,6 +24,7 @@ CREATE TABLE BasePizza (
 -- Table: Pizza
 CREATE TABLE Pizza (
     PizzaID INT PRIMARY KEY,
+    PizzaCount INT NOT NULL,
     Price DECIMAL(10, 2) NOT NULL,
     CompanyCost DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (PizzaID) REFERENCES BasePizza(BasePizzaID)
@@ -47,6 +48,7 @@ CREATE TABLE Toppings (
 CREATE TABLE OnPizza (
     PizzaID INT NOT NULL,
     ToppingID INT NOT NULL,
+    ExtraCount INT NOT NULL,
     PRIMARY KEY (PizzaID, ToppingID),
     FOREIGN KEY (PizzaID) REFERENCES Pizza(PizzaID),
     FOREIGN KEY (ToppingID) REFERENCES Toppings(ToppingID)

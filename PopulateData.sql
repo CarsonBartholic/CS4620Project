@@ -124,21 +124,18 @@ INSERT INTO Orders (OrderID, TotalPriceToCustomer, TotalCostToCompany, OrderStat
 VALUES (1, 13.50, 3.68, 'Completed', '2024-03-05 12:03:00');
 
 -- Insert into Pizza table
-INSERT INTO Pizza (PizzaID, Price, CompanyCost)
-VALUES (1, 13.50, 3.68);
+INSERT INTO Pizza (PizzaID, PizzaCount ,Price, CompanyCost)
+VALUES (1, 1 ,13.50, 3.68);
 
 -- Insert into OnPizza table for toppings
-INSERT INTO OnPizza (PizzaID, ToppingID)
-VALUES (1, 13);  -- Regular Cheese
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount)
+VALUES (1, 13, 2);  -- Extra Cheese
 
-INSERT INTO OnPizza (PizzaID, ToppingID)
-VALUES (1, 13);  -- Extra Cheese
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount)
+VALUES (1, 1, 1);   -- Pepperoni
 
-INSERT INTO OnPizza (PizzaID, ToppingID)
-VALUES (1, 1);   -- Pepperoni
-
-INSERT INTO OnPizza (PizzaID, ToppingID)
-VALUES (1, 2);   -- Sausage
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount)
+VALUES (1, 2, 1);   -- Sausage
 
 -- Apply discount to the order
 INSERT INTO Apply_Discount_Order (DiscountID, OrderID)
@@ -165,15 +162,15 @@ INSERT INTO Orders (OrderID, TotalPriceToCustomer, TotalCostToCompany, OrderStat
 VALUES (2, 10.60, 3.23, 'Completed', '2024-03-03 12:05:00');
 
 -- Pizza for First Order
-INSERT INTO Pizza (PizzaID, Price, CompanyCost)
-VALUES (2, 10.60, 3.23);
+INSERT INTO Pizza (PizzaID, PizzaCount ,Price, CompanyCost)
+VALUES (2, 1 ,10.60, 3.23);
 
 -- Toppings for First Pizza
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (2, 15);  -- Feta Cheese
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (2, 9);  -- Black Olives
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (2, 7);  -- Roma Tomatoes
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (2, 8);  -- Mushrooms
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (2, 12);  -- Banana Peppers
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (2, 15, 1);  -- Feta Cheese
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (2, 9, 1);  -- Black Olives
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (2, 7, 1);  -- Roma Tomatoes
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (2, 8, 1);  -- Mushrooms
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (2, 12, 1);  -- Banana Peppers
 
 -- Apply Discounts for First Order
 INSERT INTO Apply_Discount_Order (DiscountID, OrderID) VALUES (2, 2);  -- Lunch Special Medium
@@ -190,13 +187,13 @@ INSERT INTO Orders (OrderID, TotalPriceToCustomer, TotalCostToCompany, OrderStat
 VALUES (3, 6.75, 1.40, 'Completed', '2024-03-03 12:05:00');
 
 -- Pizza for Second Order
-INSERT INTO Pizza (PizzaID, Price, CompanyCost)
-VALUES (3, 6.75, 1.40);
+INSERT INTO Pizza (PizzaID, PizzaCount ,Price, CompanyCost)
+VALUES (3, 1 ,6.75, 1.40);
 
 -- Toppings for Second Pizza
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (3, 13);  -- Regular Cheese
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (3, 4);  -- Chicken
-INSERT INTO OnPizza (PizzaID, ToppingID) VALUES (3, 12);  -- Banana Peppers
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (3, 13, 1);  -- Regular Cheese
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (3, 4, 1);  -- Chicken
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount) VALUES (3, 12, 1);  -- Banana Peppers
 
 -- Apply Discount for Second Order
 INSERT INTO Apply_Discount_Order (DiscountID, OrderID) VALUES (3, 3);  -- Lunch Special Medium
@@ -211,13 +208,12 @@ INSERT INTO Customer (CustomerID, FirstName, LastName, Phone)
 VALUES (1, 'Andrew', 'Wilkes-Krier', '740-254-5861');
 
 -- Base Pizza: Large, Original Crust
-INSERT INTO Pizza (PizzaID, Price, CompanyCost)
-VALUES (10, 10.75, 3.30);
-
+INSERT INTO Pizza (PizzaID, PizzaCount ,Price, CompanyCost)
+VALUES (10, 6 ,10.75, 3.30);
 
 -- Add toppings: Pepperoni (ToppingID = 1)
-INSERT INTO OnPizza (PizzaID, ToppingID)
-VALUES (10, 1);
+INSERT INTO OnPizza (PizzaID, ToppingID, ExtraCount)
+VALUES (10, 1, 1);
 
 -- Insert Order Data
 INSERT INTO Orders
