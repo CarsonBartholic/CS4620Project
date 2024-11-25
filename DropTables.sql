@@ -1,43 +1,43 @@
 -- Disable foreign key checks
 SET FOREIGN_KEY_CHECKS = 0;
 
--- Drop the junction table for Apply_Discount_Order (depends on Discounts and Orders)
+-- Drop the table for Apply_Discount_Order
 DROP TABLE IF EXISTS Apply_Discount_Order;
 
--- Drop the junction table for Apply_Discount_Pizza (depends on Discounts and Pizza)
+-- Drop the table for Apply_Discount_Pizza
 DROP TABLE IF EXISTS Apply_Discount_Pizza;
 
--- Drop the junction table for Contains (depends on Pizza and Toppings)
+-- Drop the junction table for OnPizza
 DROP TABLE IF EXISTS OnPizza;
 
--- Drop the SeatNumber table (depends on DineIn)
+-- Drop the table for SeatNumber 
 DROP TABLE IF EXISTS SeatNumber;
 
--- Drop the Pickup table (depends on Orders and Customer)
+-- Drop the table for Pickup
 DROP TABLE IF EXISTS Pickup;
 
--- Drop the Delivery table (depends on Orders and Customer)
+-- Drop the table for Delivery
 DROP TABLE IF EXISTS Delivery;
 
--- Drop the DineIn table (depends on Orders)
+-- Drop the table for DineIn
 DROP TABLE IF EXISTS DineIn;
 
--- Drop the Orders table (dependent tables need to be dropped first)
+-- Drop the table for Orders
 DROP TABLE IF EXISTS Orders;
 
--- Drop the Discounts table
+-- Drop the table for Discounts
 DROP TABLE IF EXISTS Discounts;
 
--- Drop the Toppings table
+-- Drop the table for Toppings
 DROP TABLE IF EXISTS Toppings;
 
--- Drop the Pizza table
+-- Drop the table for Pizza
 DROP TABLE IF EXISTS Pizza;
 
--- Drop the BasePizza table
+-- Drop the table for BasePizza
 DROP TABLE IF EXISTS BasePizza;
 
--- Drop the Customer table
+-- Drop the table for Customer
 DROP TABLE IF EXISTS Customer;
 
 -- Re-enable foreign key checks
