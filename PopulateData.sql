@@ -121,7 +121,7 @@
 
 
 -- INSERTING ORDERS
--- Order 1
+-- Order 1 (1 Pizza)
     -- Insert into Orders table
     INSERT INTO Orders (OrderID, TotalPriceToCustomer, TotalCostToCompany, OrderStatus, TimeStamp)
     VALUES (1, 13.50, 3.68, 'Completed', '2024-03-05 12:03:00');
@@ -158,14 +158,14 @@
     INSERT INTO SeatNumber (OrderID, SeatNumber)
     VALUES (1, 3);
 
--- Order 2
+-- Order 2 (2 Pizzas)
     -- First Order: Table 4, Seat 1
     INSERT INTO Orders (OrderID, TotalPriceToCustomer, TotalCostToCompany, OrderStatus, TimeStamp)
     VALUES (2, 10.60, 3.23, 'Completed', '2024-03-03 12:05:00');
 
     -- Pizza for First Order
     INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount ,Price, CompanyCost)
-    VALUES (2, 5, 1 ,10.60, 3.23);
+    VALUES (2, 7, 1 ,10.60, 3.23);
 
     -- Toppings for First Pizza
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier) VALUES (2, 15, 1);  -- Feta Cheese
@@ -206,7 +206,7 @@
     -- Seat Number for Second Order
     INSERT INTO SeatNumber (OrderID, SeatNumber) VALUES (3, 2);
 
--- Order 3
+-- Order 3 (6 Pizza)
     INSERT INTO Customer (CustomerID, FirstName, LastName, Phone)
     VALUES (1, 'Andrew', 'Wilkes-Krier', '740-254-5861');
 
@@ -226,7 +226,7 @@
     INSERT INTO Pickup (OrderID, PlacedBy)
     VALUES (4, 1);
 
--- Order 4
+-- Order 4 (3 Pizzas)
     -- Add address for Andrew
     UPDATE Customer
     SET HouseNumber = '115',
@@ -266,7 +266,7 @@
     VALUES  (5, 5), -- Gameday special
             (4, 5); -- Specialty Pizza
 
--- Order 5
+-- Order 5 (1 Pizza)
     -- Add Customer
     INSERT INTO Customer (CustomerID, FirstName, LastName, Phone)
     VALUES (2, 'Matt', 'Engers', '740-474-9953');
@@ -296,7 +296,7 @@
     INSERT INTO Apply_Discount_Order (DiscountID, OrderID)
     VALUES  (4, 6); -- Specialty Pizza
 
--- Order 6
+-- Order 6 (1 Pizza)
     -- Add Customer
     INSERT INTO Customer (CustomerID, FirstName, LastName, Phone, HouseNumber, Street, City, State, ZipCode)
     VALUES (3, 'Frank', 'Turner', '740-232-8944', '6745', 'Wessex St', 'Athens', 'OH', '45701');
@@ -323,7 +323,7 @@
     -- Add Discounts
     -- None
 
--- Order 7
+-- Order 7 (2 Pizzas)
     -- Add Customer
     INSERT INTO Customer (CustomerID, FirstName, LastName, Phone, HouseNumber, Street, City, State, ZipCode)
     VALUES (4, 'Milo', 'Aukerman', '740-878-5679', '8879', 'Suburban Home', 'Athens', 'OH', '45701');
