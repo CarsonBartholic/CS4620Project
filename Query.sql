@@ -2,6 +2,14 @@
 -- By: Brian Hartman, Carson Bartholic
 
 -- 1
+    SELECT 
+        Name AS ToppingName,
+        InventoryLevel,
+        FLOOR(InventoryLevel / AmountXLarge) AS MaxXLargePizzas -- Rounding down to the nearest whole number
+    FROM 
+        Toppings
+    ORDER BY 
+        ToppingName;
 
 -- 2
     SELECT DATE(TimeStamp) AS order_date, SUM(TotalPriceToCustomer) AS total_revenue, SUM(TotalCostToCompany) AS total_expenses, (SUM(TotalPriceToCustomer) - SUM(TotalCostToCompany)) AS total_profit
@@ -10,13 +18,52 @@
     ORDER BY order_date ASC;
 
 -- 3
+    SELECT 
+        FirstName,
+        LastName,
+        COUNT(O.OrderID) AS TotalOrders,
+        ROUND(AVG(TotalPriceToCustomer), 2) AS AverageOrderPrice,
+        SUM(TotalPriceToCustomer) AS TotalOrderPrice,
+        MAX(TotalPriceToCustomer) AS MaxOrderPrice,
+        MIN(TotalPriceToCustomer) AS MinOrderPrice
+    FROM 
+        Customer
+    LEFT JOIN Delivery D ON CustomerID = D.PlacedBy
+    LEFT JOIN Pickup P ON CustomerID = P.PlacedBy
+    LEFT JOIN Orders O ON O.OrderID = D.OrderID OR O.OrderID = P.OrderID
+    GROUP BY 
+        CustomerID;
 
--- 4 CHECK GROUP BY( ORDERID or TABLENUMBER?)
+-- 4
     SELECT COUNT(SeatNumber.SeatNumber) AS average_seat_per_order, ROUND(AVG(TotalPriceToCustomer), 2) AS average_price_per_order, SUM(DISTINCT Orders.TotalPriceToCustomer) AS total_order_price, MAX(TotalPriceToCustomer) AS max_price_per_order, MIN(TotalPriceToCustomer) AS min_price_per_order
     FROM Orders JOIN DineIn ON Orders.OrderID = DineIn.OrderID JOIN SeatNumber ON DineIn.OrderID = SeatNumber.OrderID
     GROUP BY DineIn.tableNumber;
 
 -- 5
+    SELECT 
+        BP.CrustType AS Crust,
+        BP.Size AS PizzaSize,
+        T.Name AS ToppingName,
+        P.PizzaID,
+        CASE 
+            WHEN OP.Multiplier > 1 THEN 'Yes'
+            ELSE 'No'
+        END AS ExtraTopping
+    FROM 
+        Orders O
+    INNER JOIN Delivery D ON O.OrderID = D.OrderID
+    INNER JOIN Customer C ON D.PlacedBy = C.CustomerID
+    INNER JOIN Pizza P ON O.OrderID = P.containedInOrder
+    INNER JOIN BasePizza BP ON P.BasePizzaID = BP.BasePizzaID
+    LEFT JOIN OnPizza OP ON P.PizzaID = OP.PizzaID
+    LEFT JOIN Toppings T ON OP.ToppingID = T.ToppingID
+    WHERE 
+        O.TimeStamp = '2024-03-05 19:11:00'
+        AND C.CustomerID = 1
+        AND C.LastName = 'Wilkes-Krier'
+        AND C.FirstName = 'Andrew'
+    ORDER BY 
+        P.PizzaID;
 
 -- 6
     SELECT DATE(Orders.TimeStamp) AS order_date,
@@ -46,10 +93,26 @@
         ORDER BY order_date, order_type;
 
 -- 7
+    SELECT 
+        D.Name,
+        COUNT(DO.OrderID) AS OrdersUsingDiscount,
+        SUM(
+            CASE
+                WHEN D.PercentDiscount IS NOT NULL THEN O.TotalPriceToCustomer * D.PercentDiscount / 100
+                WHEN D.DollarDiscount IS NOT NULL THEN D.DollarDiscount
+                ELSE 0
+            END
+        ) AS TotalMoneySaved
+    FROM 
+        Orders O
+    JOIN 
+        Apply_Discount_Order DO ON O.OrderID = DO.OrderID
+    JOIN 
+        Discounts D ON D.DiscountID = DO.DiscountID
+    GROUP BY 
+        D.Name;
 
--- 8
--- Inventory usage: For each topping, show the name and the total amount used (even if it is 0) on 
--- March 3rd. Order by Topping name. 
+-- 8 
     SELECT Toppings.Name, coalesce(SUM((Toppings.AmountPersonal*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountMedium*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountLarge*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountXLarge*OnPizza.Multiplier*Pizza.PizzaCount)), 0) AS total_amount_used
     FROM Toppings
     LEFT JOIN OnPizza ON Toppings.ToppingID = OnPizza.ToppingID
@@ -59,6 +122,16 @@
     ORDER BY Toppings.Name;
 
 -- 9
+    SELECT
+        BP.Size AS PizzaSize,
+        COUNT(P.PizzaID) AS TotalPizzasOrdered,
+        AVG(P.Price) AS AveragePrice,
+        AVG(P.Price - P.CompanyCost) AS AverageCost
+    FROM
+        BasePizza BP
+        JOIN Pizza P ON BP.BasePizzaID = P.BasePizzaID
+    GROUP BY
+        BP.Size;
 
 -- 10
     SELECT BasePizza.CrustType, ROUND(SUM(Pizza.PizzaCount), 2) AS pizza_count, ROUND(AVG(Pizza.Price), 2) AS avg_price, ROUND(AVG(Pizza.CompanyCost), 2) AS avg_cost
