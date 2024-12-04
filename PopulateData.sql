@@ -218,9 +218,10 @@
     INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
     VALUES (4, 10, 6 ,10.75, 3.30, 4);
 
-    -- Add toppings: Pepperoni (ToppingID = 1)
+    -- Add toppings:
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
-    VALUES (4, 1, 1);
+    VALUES  (4, 1, 1) -- Pepperoni
+            (4, 13, 1); -- Regular Cheese
 
 
     -- Insert Pickup Data
@@ -286,7 +287,7 @@
 
     -- Add Toppings
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
-    VALUES  (8, 15, 1), -- Goat Cheese
+    VALUES  (8, 16, 1), -- Goat Cheese
             (8, 5, 1), -- Green Pepper
             (8, 6, 1), -- Onion
             (8, 7, 1), -- Roma Tomato

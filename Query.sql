@@ -50,11 +50,13 @@
 -- 8
 -- Inventory usage: For each topping, show the name and the total amount used (even if it is 0) on 
 -- March 3rd. Order by Topping name. 
-    SELECT Toppings.Name, SUM((AmountPersonal*usedPersonal)+(AmountMedium*usedMedium)+(AmountLarge*usedLarge)+(AmountXLarge*usedXLarge)+) AS total_amount_used
-    FROM 
-    WHERE 
-    GROUP BY
-    ORDER BY Topping.Name
+    SELECT Toppings.Name, coalesce(SUM((Toppings.AmountPersonal*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountMedium*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountLarge*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountXLarge*OnPizza.Multiplier*Pizza.PizzaCount)), 0) AS total_amount_used
+    FROM Toppings
+    LEFT JOIN OnPizza ON Toppings.ToppingID = OnPizza.ToppingID
+    LEFT JOIN Pizza ON OnPizza.PizzaID = Pizza.PizzaID
+    LEFT JOIN Orders ON Pizza.containedInOrder = Orders.OrderID AND (DATE(Orders.TimeStamp) = '2024-03-03')
+    GROUP BY Toppings.Name
+    ORDER BY Toppings.Name;
 
 -- 9
 
