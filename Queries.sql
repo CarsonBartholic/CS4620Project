@@ -39,16 +39,15 @@ FROM
     Orders O
 INNER JOIN Delivery D ON O.OrderID = D.OrderID
 INNER JOIN Customer C ON D.PlacedBy = C.CustomerID
-INNER JOIN Pizza P ON O.OrderID = D.OrderID
+INNER JOIN Pizza P ON O.OrderID = P.containedInOrder
 INNER JOIN BasePizza BP ON P.BasePizzaID = BP.BasePizzaID
 LEFT JOIN OnPizza OP ON P.PizzaID = OP.PizzaID
 LEFT JOIN Toppings T ON OP.ToppingID = T.ToppingID
 WHERE 
     O.TimeStamp = '2024-03-05 19:11:00'
     AND C.CustomerID = 1
-    -- AND C.LastName = 'Wilkes-Krier'
-    -- AND C.FirstName = 'Andrew'
-    AND P.PizzaID IN (5, 6, 7)  -- Only the pizzas inserted
+    AND C.LastName = 'Wilkes-Krier'
+    AND C.FirstName = 'Andrew'
 ORDER BY 
     P.PizzaID;
 

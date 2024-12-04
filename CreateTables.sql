@@ -1,6 +1,6 @@
 -- Project Part 3
 -- By: Brian Hartman, Carson Bartholic
-
+SET FOREIGN_KEY_CHECKS = 0;
 -- Table: Customer
 CREATE TABLE Customer (
     CustomerID INT PRIMARY KEY,
@@ -31,6 +31,8 @@ CREATE TABLE Pizza (
     PizzaCount INT NOT NULL,
     Price DECIMAL(10, 2) NOT NULL,
     CompanyCost DECIMAL(10, 2) NOT NULL,
+    containedInOrder INT NOT NULL,
+    FOREIGN KEY (containedInOrder) REFERENCES Orders(OrderID),
     FOREIGN KEY (BasePizzaID) REFERENCES BasePizza(BasePizzaID)
 );
 
@@ -124,3 +126,4 @@ CREATE TABLE SeatNumber (
     FOREIGN KEY (OrderID) REFERENCES DineIn(OrderID)
 );
 
+SET FOREIGN_KEY_CHECKS = 1;
