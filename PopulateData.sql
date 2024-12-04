@@ -127,8 +127,8 @@
     VALUES (1, 13.50, 3.68, 'Completed', '2024-03-05 12:03:00');
 
     -- Insert into Pizza table
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost)
-    VALUES (1, 9, 1, 13.50, 3.68);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (1, 9, 1, 13.50, 3.68, 1);
 
     -- Insert into OnPizza table for toppings
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
@@ -164,8 +164,8 @@
     VALUES (2, 10.60, 3.23, 'Completed', '2024-03-03 12:05:00');
 
     -- Pizza for First Order
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount ,Price, CompanyCost)
-    VALUES (2, 7, 1 ,10.60, 3.23);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount ,Price, CompanyCost, containedInOrder)
+    VALUES (2, 7, 1 ,10.60, 3.23, 2);
 
     -- Toppings for First Pizza
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier) VALUES (2, 15, 1);  -- Feta Cheese
@@ -189,8 +189,8 @@
     VALUES (3, 6.75, 1.40, 'Completed', '2024-03-03 12:05:00');
 
     -- Pizza for Second Order
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost)
-    VALUES (3, 2, 1 ,6.75, 1.40);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (3, 2, 1 ,6.75, 1.40, 3);
 
     -- Toppings for Second Pizza
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier) VALUES (3, 13, 1);  -- Regular Cheese
@@ -211,8 +211,8 @@
     VALUES (1, 'Andrew', 'Wilkes-Krier', '740-254-5861');
 
     -- Base Pizza: Large, Original Crust
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost)
-    VALUES (4, 10, 6 ,10.75, 3.30);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (4, 10, 6 ,10.75, 3.30, 4);
 
     -- Add toppings: Pepperoni (ToppingID = 1)
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
@@ -244,10 +244,10 @@
     VALUES (5, 1);
 
     -- Add Pizzas
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost)
-    VALUES (5, 14, 1, 14.50, 5.59),
-           (6, 14, 1, 17, 5.59),
-           (7, 14, 1, 14, 5.68);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (5, 14, 1, 14.50, 5.59, 5),
+           (6, 14, 1, 17, 5.59, 5),
+           (7, 14, 1, 14, 5.68, 5);
     
     -- Add Toppings
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
@@ -280,8 +280,8 @@
     VALUES (6, 2);
 
     -- Add Pizza
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost)
-    VALUES (8, 16, 1, 16.85, 7.85);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (8, 16, 1, 16.85, 7.85, 6);
 
     -- Add Toppings
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
@@ -310,8 +310,8 @@
     VALUES (7, 3);
 
     -- Add Pizza
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost)
-    VALUES (9, 9, 1, 13.25, 3.20);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (9, 9, 1, 13.25, 3.20, 7);
 
     -- Add Toppings
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
@@ -337,9 +337,9 @@
     VALUES (8, 4);
 
     -- Add Pizza
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost)
-    VALUES (10, 9, 1, 12, 3.75),
-           (11, 9, 1, 12, 2.55);
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (10, 9, 1, 12, 3.75, 8),
+           (11, 9, 1, 12, 2.55, 8);
 
     -- Add Toppings
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
