@@ -11,8 +11,10 @@ ORDER BY order_date ASC;
 
 -- 3
 
--- 4
-SELECT AVG() AS 
+-- 4?
+SELECT Orders.OrderID, AVG(SeatNumber) AS average_seat_per_order, ROUND(AVG(TotalPriceToCustomer), 2) AS average_price_per_order, ROUND(AVG(TotalCostToCompany), 2) AS average_cost_per_order, MAX(TotalPriceToCustomer) AS max_price_per_order, MIN(TotalPriceToCustomer) AS min_price_per_order
+FROM Orders JOIN DineIn ON Orders.OrderID = DineIn.OrderID JOIN SeatNumber ON DineIn.OrderID = SeatNumber.OrderID
+GROUP BY Orders.OrderID;
 -- 5
 
 -- 6
