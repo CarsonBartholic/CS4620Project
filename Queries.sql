@@ -8,7 +8,7 @@ FROM
 ORDER BY 
     ToppingName;
 
--- 2.
+-- 3.
 SELECT 
     FirstName,
     LastName,
@@ -25,7 +25,7 @@ LEFT JOIN Orders O ON O.OrderID = D.OrderID OR O.OrderID = P.OrderID
 GROUP BY 
     CustomerID;
 
--- 3.
+-- 5.
 SELECT 
     BP.CrustType AS Crust,
     BP.Size AS PizzaSize,
@@ -51,7 +51,7 @@ WHERE
 ORDER BY 
     P.PizzaID;
 
--- 4.
+-- 7.
 SELECT 
     D.Name,
     COUNT(DO.OrderID) AS OrdersUsingDiscount,
@@ -71,7 +71,7 @@ JOIN
 GROUP BY 
     D.Name;
 
--- 5.
+-- 9.
 SELECT
     BP.Size AS PizzaSize,
     COUNT(P.PizzaID) AS TotalPizzasOrdered,
