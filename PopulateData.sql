@@ -198,7 +198,7 @@
     INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier) VALUES (3, 12, 1);  -- Banana Peppers
 
     -- Apply Discount for Second Order
-    INSERT INTO Apply_Discount_Order (DiscountID, OrderID) VALUES (3, 3);  -- Lunch Special Medium
+    INSERT INTO Apply_Discount_Order (DiscountID, OrderID) VALUES (2, 3);  -- Lunch Special Medium
 
     -- DineIn for Second Order
     INSERT INTO DineIn (OrderID, TableNumber) VALUES (3, 4);
