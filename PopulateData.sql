@@ -214,19 +214,19 @@
     INSERT INTO Orders
     VALUES (4, 6 * 10.75, 6 * 3.30, '2024-03-03 21:30:00' ,'Completed');
     
-    -- Base Pizza: Large, Original Crust
-    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
-    VALUES (4, 10, 6 ,10.75, 3.30, 4);
-
-    -- Add toppings:
-    INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
-    VALUES  (4, 1, 1) -- Pepperoni
-            (4, 13, 1); -- Regular Cheese
-
-
     -- Insert Pickup Data
     INSERT INTO Pickup (OrderID, PlacedBy)
     VALUES (4, 1);
+
+    -- Base Pizza: Large, Original Crust
+    INSERT INTO Pizza (PizzaID, BasePizzaID, PizzaCount, Price, CompanyCost, containedInOrder)
+    VALUES (4, 10, 6, 10.75, 3.30, 4);
+
+    -- Add toppings:
+    INSERT INTO OnPizza (PizzaID, ToppingID, Multiplier)
+    VALUES  (4, 1, 1), -- Pepperoni
+            (4, 13, 1); -- Regular Cheese
+
 
 -- Order 4 (3 Pizzas, Delivery)
     -- Add address for Andrew

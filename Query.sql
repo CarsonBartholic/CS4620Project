@@ -11,11 +11,11 @@
     ORDER BY 
         ToppingName;
 
--- 2
-    SELECT DATE(TimeStamp) AS order_date, SUM(TotalPriceToCustomer) AS total_revenue, SUM(TotalCostToCompany) AS total_expenses, (SUM(TotalPriceToCustomer) - SUM(TotalCostToCompany)) AS total_profit
+-- 2 (DO I NEED TO DISPLAY DATE?)
+    SELECT SUM(TotalPriceToCustomer) AS total_revenue, SUM(TotalCostToCompany) AS total_expenses, (SUM(TotalPriceToCustomer) - SUM(TotalCostToCompany)) AS total_profit
     FROM Orders
-    GROUP BY order_date
-    ORDER BY order_date ASC;
+    GROUP BY DATE(TimeStamp)
+    ORDER BY DATE(TimeStamp) ASC;
 
 -- 3
     SELECT 
@@ -34,7 +34,7 @@
     GROUP BY 
         CustomerID;
 
--- 4
+-- 4(ASK ABOUT)
     SELECT COUNT(SeatNumber.SeatNumber) AS average_seat_per_order, ROUND(AVG(TotalPriceToCustomer), 2) AS average_price_per_order, SUM(DISTINCT Orders.TotalPriceToCustomer) AS total_order_price, MAX(TotalPriceToCustomer) AS max_price_per_order, MIN(TotalPriceToCustomer) AS min_price_per_order
     FROM Orders JOIN DineIn ON Orders.OrderID = DineIn.OrderID JOIN SeatNumber ON DineIn.OrderID = SeatNumber.OrderID
     GROUP BY DineIn.tableNumber;
@@ -112,14 +112,36 @@
     GROUP BY 
         D.Name;
 
--- 8 
-    SELECT Toppings.Name, coalesce(SUM((Toppings.AmountPersonal*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountMedium*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountLarge*OnPizza.Multiplier*Pizza.PizzaCount)+(Toppings.AmountXLarge*OnPizza.Multiplier*Pizza.PizzaCount)), 0) AS total_amount_used
-    FROM Toppings
-    LEFT JOIN OnPizza ON Toppings.ToppingID = OnPizza.ToppingID
-    LEFT JOIN Pizza ON OnPizza.PizzaID = Pizza.PizzaID
-    LEFT JOIN Orders ON Pizza.containedInOrder = Orders.OrderID AND (DATE(Orders.TimeStamp) = '2024-03-03')
-    GROUP BY Toppings.Name
-    ORDER BY Toppings.Name;
+-- 8 (Ask About)
+    SELECT * FROM OnPizza WHERE OnPizza.ToppingID = 1;
+    SELECT 
+        Toppings.Name AS ToppingName, 
+        SUM(
+            CASE 
+                WHEN DATE(Orders.TimeStamp) = '2024-03-03' THEN
+                    CASE
+                        WHEN Pizza.BasePizzaID IN (1, 2, 3, 4) THEN (Toppings.AmountPersonal * COALESCE(OnPizza.Multiplier, 1) * COALESCE(Pizza.PizzaCount, 1))
+                        WHEN Pizza.BasePizzaID IN (5, 6, 7, 8) THEN (Toppings.AmountMedium * COALESCE(OnPizza.Multiplier, 1) * COALESCE(Pizza.PizzaCount, 1))
+                        WHEN Pizza.BasePizzaID IN (9, 10, 11, 12) THEN (Toppings.AmountLarge * COALESCE(OnPizza.Multiplier, 1) * COALESCE(Pizza.PizzaCount, 1))
+                        WHEN Pizza.BasePizzaID IN (13, 14, 15, 16) THEN (Toppings.AmountXLarge * COALESCE(OnPizza.Multiplier, 1) * COALESCE(Pizza.PizzaCount, 1))
+                        ELSE 0
+                    END
+                ELSE 0
+            END
+        ) AS TotalAmountUsed
+    FROM 
+        Toppings
+    LEFT JOIN 
+        OnPizza ON Toppings.ToppingID = OnPizza.ToppingID
+    LEFT JOIN 
+        Pizza ON OnPizza.PizzaID = Pizza.PizzaID
+    LEFT JOIN 
+        Orders ON Pizza.containedInOrder = Orders.OrderID
+    GROUP BY 
+        Toppings.Name
+    ORDER BY 
+        Toppings.Name;
+
 
 -- 9
     SELECT
