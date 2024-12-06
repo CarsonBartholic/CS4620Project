@@ -11,7 +11,7 @@
     ORDER BY 
         ToppingName;
 
--- 2 (DO I NEED TO DISPLAY DATE?)
+-- 2
     SELECT SUM(TotalPriceToCustomer) AS total_revenue, SUM(TotalCostToCompany) AS total_expenses, (SUM(TotalPriceToCustomer) - SUM(TotalCostToCompany)) AS total_profit
     FROM Orders
     GROUP BY DATE(TimeStamp)
@@ -34,10 +34,24 @@
     GROUP BY 
         CustomerID;
 
--- 4(ASK ABOUT)
-    SELECT COUNT(SeatNumber.SeatNumber) AS average_seat_per_order, ROUND(AVG(TotalPriceToCustomer), 2) AS average_price_per_order, SUM(DISTINCT Orders.TotalPriceToCustomer) AS total_order_price, MAX(TotalPriceToCustomer) AS max_price_per_order, MIN(TotalPriceToCustomer) AS min_price_per_order
-    FROM Orders JOIN DineIn ON Orders.OrderID = DineIn.OrderID JOIN SeatNumber ON DineIn.OrderID = SeatNumber.OrderID
-    GROUP BY DineIn.tableNumber;
+-- 4
+SELECT 
+    AVG(SeatCount) AS average_seat_per_order, 
+    ROUND(AVG(o.TotalPriceToCustomer), 2) AS average_price_per_order, 
+    SUM(DISTINCT o.TotalPriceToCustomer) AS total_order_price,
+    MAX(o.TotalPriceToCustomer) AS max_price_per_order, 
+    MIN(o.TotalPriceToCustomer) AS min_price_per_order
+FROM (
+    SELECT 
+        COUNT(s.SeatNumber) AS SeatCount,
+        o.OrderID
+    FROM 
+        SeatNumber s
+    JOIN 
+        Orders o ON s.OrderID = o.OrderID
+    GROUP BY 
+        o.OrderID
+) SubQuery JOIN Orders o ON SubQuery.OrderID = o.OrderID;    
 
 -- 5
     SELECT 
@@ -112,7 +126,7 @@
     GROUP BY 
         D.Name;
 
--- 8 (Ask About)
+-- 8
     SELECT * FROM OnPizza WHERE OnPizza.ToppingID = 1;
     SELECT 
         Toppings.Name AS ToppingName, 
@@ -141,7 +155,6 @@
         Toppings.Name
     ORDER BY 
         Toppings.Name;
-
 
 -- 9
     SELECT
